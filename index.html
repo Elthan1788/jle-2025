@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>双丽月饼订单 / Jelisz Mooncake Order Form</title>
-    <!-- 使用 Tailwind CSS 加强美观和响应性 / Use Tailwind CSS for aesthetics and responsiveness -->
+    <!-- Use Tailwind CSS for aesthetics and responsiveness -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -12,7 +12,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #F3EFE0;
         }
-        /* 自定义滚动条样式 */
+        /* Custom scrollbar styles */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -83,13 +83,13 @@
 </head>
 <body class="bg-[#F3EFE0] p-4 sm:p-8">
     <div class="container mx-auto max-w-3xl p-6 sm:p-10 container-bg">
-        <!-- 头部 / Header -->
+        <!-- Header -->
         <h1 class="text-4xl sm:text-5xl font-extrabold text-[#966C52] text-center mb-2">双丽月饼</h1>
         <h2 class="text-xl sm:text-2xl font-bold text-[#D4B996] text-center mb-10">Jelisz Mooncake</h2>
 
-        <!-- 订单表单 / Order Form -->
+        <!-- Order Form -->
         <form id="orderForm" class="space-y-12">
-            <!-- 顾客资料 / Customer Information -->
+            <!-- Customer Information -->
             <div class="space-y-4">
                 <h3 class="text-2xl font-semibold text-[#966C52] section-title">1. 顾客资料 / Customer Info</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -104,18 +104,18 @@
                 </div>
             </div>
 
-            <!-- 月饼选择 / Mooncake Selection -->
+            <!-- Mooncake Selection -->
             <div class="space-y-8">
                 <h3 class="text-2xl font-semibold text-[#966C52] section-title">2. 月饼选择 / Mooncake Selection</h3>
                 
-                <!-- 传统月饼 / Traditional Mooncake -->
+                <!-- Traditional Mooncake -->
                 <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
                     <h4 class="text-xl font-bold text-[#966C52] mb-4">传统月饼 / Traditional Mooncake</h4>
                     <p class="text-sm text-gray-600 mb-4">一套默认包含4种不同口味，也可自选或单点。可选4粒或2粒装盒。</p>
                     <p class="text-sm text-gray-600 mb-4">A set defaults to 4 different flavors. You can also mix & match or order individually. Available in 4-piece or 2-piece boxes.</p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- 口味选项 / Flavor Options -->
+                        <!-- Flavor Options -->
                         <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
                             <span class="text-gray-800">豆沙 / Red Bean (RM12)</span>
                             <div class="custom-number-input w-24">
@@ -193,7 +193,7 @@
                         </div>
                     </div>
 
-                    <!-- 传统月饼包装选择 / Traditional Mooncake Packaging -->
+                    <!-- Traditional Mooncake Packaging -->
                     <div class="mt-8 space-y-4">
                         <h5 class="text-lg font-bold text-[#966C52]">传统月饼包装 / Packaging</h5>
                         <p class="text-sm text-gray-600">请填写您需要的盒数。 / Please fill in the number of boxes you need.</p>
@@ -233,14 +233,14 @@
                     </div>
                 </div>
 
-                <!-- 冰皮月饼 / Snow Skin Mooncake -->
+                <!-- Snow Skin Mooncake -->
                 <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
                     <h4 class="text-xl font-bold text-[#966C52] mb-4">冰皮月饼 / Snow Skin Mooncake</h4>
                     <p class="text-sm text-gray-600 mb-4">一套默认包含4种不同口味，也可自选或单点。可选4粒或2粒装盒。</p>
                     <p class="text-sm text-gray-600 mb-4">A set defaults to 4 different flavors. You can also mix & match or order individually. Available in 4-piece or 2-piece boxes.</p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- 口味选项 / Flavor Options -->
+                        <!-- Flavor Options -->
                         <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
                             <span class="text-gray-800">摩卡榛子 / Mocha Hazelnut (RM20)</span>
                             <div class="custom-number-input w-24">
@@ -318,7 +318,7 @@
                         </div>
                     </div>
 
-                    <!-- 冰皮月饼包装选择 / Snow Skin Mooncake Packaging -->
+                    <!-- Snow Skin Mooncake Packaging -->
                     <div class="mt-8 space-y-4">
                         <h5 class="text-lg font-bold text-[#966C52]">冰皮月饼包装 / Packaging</h5>
                         <p class="text-sm text-gray-600">请填写您需要的盒数。 / Please fill in the number of boxes you need.</p>
@@ -358,7 +358,7 @@
                     </div>
                 </div>
 
-                <!-- 菜燕月饼 / Jelly Mooncake -->
+                <!-- Jelly Mooncake -->
                 <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
                     <h4 class="text-xl font-bold text-[#966C52] mb-4">菜燕月饼 / Jelly Mooncake (RM38/set)</h4>
                     <p class="text-sm text-gray-600 mb-4">一套包含四种口味：芒果西米露、斑斓玉米、香芋红豆、椰糖马蹄。</p>
@@ -381,11 +381,11 @@
                 </div>
             </div>
 
-            <!-- 取货和付款方式 / Pickup & Payment -->
+            <!-- Pickup & Payment -->
             <div class="space-y-8">
                 <h3 class="text-2xl font-semibold text-[#966C52] section-title">3. 取货与付款 / Pickup & Payment</h3>
                 
-                <!-- 取货日 / Pickup Date -->
+                <!-- Pickup Date -->
                 <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
                     <h4 class="text-xl font-bold text-[#966C52] mb-4">取货日 / Pickup Date</h4>
                     <div class="flex flex-wrap gap-4">
@@ -408,7 +408,7 @@
                     </div>
                 </div>
 
-                <!-- 取货方式 / Pickup Method -->
+                <!-- Pickup Method -->
                 <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
                     <h4 class="text-xl font-bold text-[#966C52] mb-4">取货方式 / Pickup Method</h4>
                     <div class="flex flex-col sm:flex-row gap-4">
@@ -421,7 +421,7 @@
                             <span class="text-gray-800">配送 / Delivery</span>
                         </label>
                     </div>
-                    <!-- 配送资料 / Delivery Details -->
+                    <!-- Delivery Details -->
                     <div id="deliveryFields" class="mt-6 space-y-4 hidden">
                         <p class="text-sm text-gray-600">配送费将视地区来决定，请联系我们确认。 / Delivery fee depends on the area, please contact us for confirmation.</p>
                         <div>
@@ -439,7 +439,7 @@
                     </div>
                 </div>
 
-                <!-- 付款方式 / Payment Method -->
+                <!-- Payment Method -->
                 <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
                     <h4 class="text-xl font-bold text-[#966C52] mb-4">付款方式 / Payment Method</h4>
                     <div class="flex flex-col sm:flex-row gap-4">
@@ -455,13 +455,13 @@
                 </div>
             </div>
 
-            <!-- 备注 / Remarks -->
+            <!-- Remarks -->
             <div class="space-y-4">
                 <h3 class="text-2xl font-semibold text-[#966C52] section-title">4. 备注/留言 / Remarks/Notes</h3>
                 <textarea id="remarks" name="remarks" rows="4" placeholder="例如：特别要求或送礼留言 / E.g., special requests or gift message" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#D4B996] focus:ring focus:ring-[#D4B996] focus:ring-opacity-50 p-2"></textarea>
             </div>
 
-            <!-- 总览 / Order Summary -->
+            <!-- Order Summary -->
             <div class="space-y-4">
                 <h3 class="text-2xl font-semibold text-[#966C52] section-title">5. 总览 / Order Summary</h3>
                 <div id="orderSummary" class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
@@ -476,13 +476,13 @@
                 </div>
             </div>
 
-            <!-- 温馨提示 / Friendly Reminder -->
+            <!-- Friendly Reminder -->
             <div class="text-center text-sm text-gray-600 mt-6 p-4 border border-dashed border-[#D4B996] rounded-xl">
                 <p><strong>温馨提示:</strong> 下单成功后，请联系我们以做个确认记录，同时我们也会提供自取地点、付款方式，和配送费用与时间，谢谢您的支持！</p>
                 <p class="mt-2"><strong>Friendly reminder:</strong> After placing your order, please contact us for a confirmation. We will also provide the self-pickup location, payment details, and delivery fees & times. Thank you for your support!</p>
             </div>
 
-            <!-- 提交按钮 / Submit Button -->
+            <!-- Submit Button -->
             <div class="text-center">
                 <button type="submit" id="submitBtn" class="bg-[#966C52] text-white font-bold py-3 px-8 rounded-full submit-button shadow-lg">
                     提交 / Submit
@@ -490,7 +490,7 @@
             </div>
         </form>
 
-        <!-- 弹窗 / Popup Modal -->
+        <!-- Popup Modal -->
         <div id="popupModal" class="popup-modal hidden">
             <div class="popup-content text-center space-y-4">
                 <h4 class="text-2xl font-bold text-[#966C52]">订单已提交成功！</h4>
@@ -503,11 +503,10 @@
     </div>
     
     <script>
-        // 请在此处替换为您的 Google App Script 部署后的 URL
         // Please replace this with your deployed Google App Script URL
-        const GOOGLE_APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwO5-i_GhlL2dy7UBjT73U8BJwW7ARtZOOvHk26g9obJALtso_yVcPMxcrGqA6mUx-Xpg/exec";
+        const GOOGLE_APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxlU-2MBeys7Ihtjtr2Kfy1A7j7Dkv6XyT0vRlYBXqU3_HgxbcZ4TYD782vkAqb71knSA/exec";
 
-        // 月饼价格配置 / Mooncake price configuration
+        // Mooncake price configuration
         const PRICES = {
             'redBean': 12, 'whiteLotus': 20, 'pandan': 20, 'mixedNuts': 22,
             'traditionalSet': 70,
@@ -530,7 +529,7 @@
             'jellySet': '菜燕月饼套装 / Jelly Mooncake Set'
         };
 
-        // 辅助函数：根据ID修改数量 / Helper function: change quantity by ID
+        // Helper function: change quantity by ID
         function changeQuantity(id, delta) {
             const input = document.getElementById(id);
             let value = parseInt(input.value) || 0;
@@ -540,14 +539,14 @@
             updateSummary();
         }
 
-        // 切换配送信息输入框的显示状态 / Toggle visibility of delivery fields
+        // Toggle visibility of delivery fields
         function toggleDeliveryFields() {
             const deliveryFields = document.getElementById('deliveryFields');
             const pickupMethod = document.querySelector('input[name="pickupMethod"]:checked');
             deliveryFields.classList.toggle('hidden', pickupMethod && pickupMethod.value !== 'Delivery');
         }
 
-        // 更新订单总览和价格 / Update order summary and price
+        // Update order summary and price
         function updateSummary() {
             let totalPrice = 0;
             const summaryList = document.getElementById('summaryList');
@@ -559,7 +558,7 @@
             let totalTraditionalItems = 0;
             let totalSnowSkinItems = 0;
 
-            // 传统月饼计算 / Traditional mooncake calculation
+            // Traditional mooncake calculation
             const traditionalFlavors = ['redBean', 'whiteLotus', 'pandan', 'mixedNuts'];
             for (const flavor of traditionalFlavors) {
                 const count = parseInt(data.get(flavor) || '0');
@@ -574,10 +573,10 @@
             if (traditionalSetCount > 0) {
                 totalPrice += traditionalSetCount * PRICES.traditionalSet;
                 summaryList.innerHTML += `<li class="text-sm font-bold">传统套装 x ${traditionalSetCount}</li>`;
-                totalTraditionalItems += traditionalSetCount * 4; // 每个套装包含4粒 / Each set has 4 mooncakes
+                totalTraditionalItems += traditionalSetCount * 4; // Each set has 4 mooncakes
             }
 
-            // 传统月饼包装检查 / Traditional mooncake packaging check
+            // Traditional mooncake packaging check
             const traditionalBox4in1Count = parseInt(data.get('traditionalBox4in1') || '0');
             const traditionalBox2in1Count = parseInt(data.get('traditionalBox2in1') || '0');
             const packagedTraditional = (traditionalBox4in1Count * 4) + (traditionalBox2in1Count * 2);
@@ -596,7 +595,7 @@
             }
 
 
-            // 冰皮月饼计算 / Snow skin mooncake calculation
+            // Snow skin mooncake calculation
             const snowskinFlavors = ['mocha', 'yam', 'pistachio', 'berries'];
             for (const flavor of snowskinFlavors) {
                 const count = parseInt(data.get(flavor) || '0');
@@ -611,10 +610,10 @@
             if (snowskinSetCount > 0) {
                 totalPrice += snowskinSetCount * PRICES.snowskinSet;
                 summaryList.innerHTML += `<li class="text-sm font-bold">冰皮套装 x ${snowskinSetCount}</li>`;
-                totalSnowSkinItems += snowskinSetCount * 4; // 每个套装包含4粒 / Each set has 4 mooncakes
+                totalSnowSkinItems += snowskinSetCount * 4; // Each set has 4 mooncakes
             }
 
-            // 冰皮月饼包装检查 / Snow skin mooncake packaging check
+            // Snow skin mooncake packaging check
             const snowskinBox4in1Count = parseInt(data.get('snowskinBox4in1') || '0');
             const snowskinBox2in1Count = parseInt(data.get('snowskinBox2in1') || '0');
             const packagedSnowSkin = (snowskinBox4in1Count * 4) + (snowskinBox2in1Count * 2);
@@ -632,18 +631,18 @@
                 }
             }
 
-            // 菜燕月饼计算 / Jelly mooncake calculation
+            // Jelly mooncake calculation
             const jellySetCount = parseInt(data.get('jellySet') || '0');
             if (jellySetCount > 0) {
                 totalPrice += jellySetCount * PRICES.jellySet;
                 summaryList.innerHTML += `<li class="text-sm">菜燕月饼套装 x ${jellySetCount}</li>`;
             }
 
-            // 总价显示 / Total price display
+            // Total price display
             document.getElementById('totalPrice').textContent = `RM ${totalPrice.toFixed(2)}`;
         }
 
-        // 生成简短订单号 / Generate a short order number
+        // Generate a short order number
         function generateOrderNumber(batch) {
             const now = new Date();
             const year = String(now.getFullYear()).slice(-2);
@@ -654,7 +653,7 @@
             return `${batchPrefix}-${year}${month}${day}-${random}`;
         }
 
-        // 显示弹窗 / Show popup modal
+        // Show popup modal
         function showPopup(orderNumber, formData) {
             document.getElementById('orderNumber').textContent = orderNumber;
             const popupSummary = document.getElementById('popupSummary');
@@ -685,14 +684,14 @@
             document.getElementById('popupModal').classList.remove('hidden');
         }
 
-        // 关闭弹窗 / Close popup modal
+        // Close popup modal
         function closePopup() {
             document.getElementById('popupModal').classList.add('hidden');
             document.getElementById('orderForm').reset();
-            updateSummary(); // 重置后更新总览
+            updateSummary(); // Reset and update summary
         }
 
-        // 表单提交处理 / Form submission handler
+        // Form submission handler
         document.getElementById('orderForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             const submitBtn = document.getElementById('submitBtn');
@@ -703,7 +702,7 @@
             const data = {};
             formData.forEach((value, key) => { data[key] = value; });
 
-            // 将套装数量分解到各个口味 / Break down set quantities into individual flavors
+            // Break down set quantities into individual flavors
             const traditionalSetCount = parseInt(data.traditionalSet || '0');
             if (traditionalSetCount > 0) {
                 data.redBean = (parseInt(data.redBean || '0') + traditionalSetCount * 1).toString();
@@ -720,7 +719,7 @@
                 data.berries = (parseInt(data.berries || '0') + snowskinSetCount * 1).toString();
             }
             
-            // 计算总价和详细月饼项目 / Calculate total price and detailed mooncake items
+            // Calculate total price and detailed mooncake items
             let totalPrice = 0;
             const mooncakeItems = {};
             for (const key in data) {
@@ -733,7 +732,7 @@
             const pickupBatch = data.pickupBatch;
             const orderNumber = generateOrderNumber(pickupBatch);
 
-            // 最终提交数据 / Final data to be submitted
+            // Final data to be submitted
             const finalData = {
                 orderNumber: orderNumber,
                 timestamp: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' }), // GMT+8
@@ -754,7 +753,7 @@
                 snowskinBox2in1: parseInt(data.snowskinBox2in1 || '0')
             };
 
-            // 发送数据到 Google App Script / Send data to Google App Script
+            // Send data to Google App Script
             try {
                 const response = await fetch(GOOGLE_APP_SCRIPT_URL, {
                     method: 'POST',
@@ -762,11 +761,11 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(finalData),
-                    redirect: 'follow', // 确保可以跟随重定向 / Ensure redirects are followed
-                    mode: 'no-cors' // 必须使用 no-cors 模式来避免 CORS 错误 / Must use no-cors mode to avoid CORS errors
+                    redirect: 'follow', // Ensure redirects are followed
+                    mode: 'no-cors' // Must use no-cors mode to avoid CORS errors
                 });
 
-                // 由于是 no-cors 模式，无法直接检查 response.ok，但请求通常会成功
+                // Due to no-cors mode, we can't directly check response.ok, but the request usually succeeds.
                 showPopup(orderNumber, finalData);
 
             } catch (error) {
@@ -778,7 +777,7 @@
             }
         });
 
-        // 初始化更新总览 / Initialize summary on page load
+        // Initialize summary on page load
         document.addEventListener('DOMContentLoaded', () => {
             updateSummary();
         });
