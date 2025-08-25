@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双丽月饼订单 / Jelisz Mooncake Order Form</title>
+    <!-- 使用 Tailwind CSS 加强美观和响应性 / Use Tailwind CSS for aesthetics and responsiveness -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3EFE0;
+        }
+        /* 自定义滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #D4B996;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #F3EFE0;
+        }
+        .container-bg {
+            background-color: #F8F5EE;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 1rem;
+        }
+        .section-title {
+            border-left: 5px solid #D4B996;
+            padding-left: 1rem;
+        }
+        .submit-button {
+            transition: all 0.3s ease;
+        }
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+        .input-number {
+            -moz-appearance: textfield;
+        }
+        .input-number::-webkit-outer-spin-button,
+        .input-number::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .custom-number-input input[type='number'] {
+            -moz-appearance: textfield;
+        }
+        .custom-number-input input[type='number']::-webkit-outer-spin-button,
+        .custom-number-input input[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        .custom-number-input button:hover {
+            background-color: #E6D2B3;
+        }
+        .custom-number-input button {
+            transition: all 0.3s ease;
+        }
+        .popup-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-content {
+            background-color: #F8F5EE;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 500px;
+        }
+    </style>
+</head>
+<body class="bg-[#F3EFE0] p-4 sm:p-8">
+    <div class="container mx-auto max-w-3xl p-6 sm:p-10 container-bg">
+        <!-- 头部 / Header -->
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-[#966C52] text-center mb-2">双丽月饼</h1>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#D4B996] text-center mb-10">Jelisz Mooncake</h2>
+
+        <!-- 订单表单 / Order Form -->
+        <form id="orderForm" class="space-y-12">
+            <!-- 顾客资料 / Customer Information -->
+            <div class="space-y-4">
+                <h3 class="text-2xl font-semibold text-[#966C52] section-title">1. 顾客资料 / Customer Info</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="customerName" class="block text-sm font-medium text-gray-700">姓名 / Name</label>
+                        <input type="text" id="customerName" name="customerName" placeholder="请输入您的姓名 / Enter your name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#D4B996] focus:ring focus:ring-[#D4B996] focus:ring-opacity-50 transition-colors duration-200 p-2">
+                    </div>
+                    <div>
+                        <label for="contactNumber" class="block text-sm font-medium text-gray-700">联系号码 (WhatsApp) / Contact (WhatsApp)</label>
+                        <input type="tel" id="contactNumber" name="contactNumber" placeholder="请输入您的WhatsApp号码 / Enter your WhatsApp number" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#D4B996] focus:ring focus:ring-[#D4B996] focus:ring-opacity-50 transition-colors duration-200 p-2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 月饼选择 / Mooncake Selection -->
+            <div class="space-y-8">
+                <h3 class="text-2xl font-semibold text-[#966C52] section-title">2. 月饼选择 / Mooncake Selection</h3>
+                
+                <!-- 传统月饼 / Traditional Mooncake -->
+                <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
+                    <h4 class="text-xl font-bold text-[#966C52] mb-4">传统月饼 / Traditional Mooncake</h4>
+                    <p class="text-sm text-gray-600 mb-4">一套默认包含4种不同口味，也可自选或单点。可选4粒或2粒装盒。</p>
+                    <p class="text-sm text-gray-600 mb-4">A set defaults to 4 different flavors. You can also mix & match or order individually. Available in 4-piece or 2-piece boxes.</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- 口味选项 / Flavor Options -->
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                            <span class="text-gray-800">豆沙 / Red Bean (RM12)</span>
+                            <div class="custom-number-input w-24">
+                                <label for="traditional-red-bean" class="hidden">Red Bean</label>
+                                <div class="flex items-center">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-red-bean', -1)">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" id="traditional-red-bean" name="redBean" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-red-bean', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                            <span class="text-gray-800">白莲单黄 / White Lotus Single Yolk (RM20)</span>
+                            <div class="custom-number-input w-24">
+                                <label for="traditional-white-lotus" class="hidden">White Lotus</label>
+                                <div class="flex items-center">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-white-lotus', -1)">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" id="traditional-white-lotus" name="whiteLotus" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-white-lotus', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                            <span class="text-gray-800">翡翠单黄 / Pandan Lotus Single Yolk (RM20)</span>
+                            <div class="custom-number-input w-24">
+                                <label for="traditional-pandan" class="hidden">Pandan</label>
+                                <div class="flex items-center">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-pandan', -1)">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" id="traditional-pandan" name="pandan" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-pandan', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                            <span class="text-gray-800">经典五仁 / Mixed Nuts (RM22)</span>
+                            <div class="custom-number-input w-24">
+                                <label for="traditional-mixed-nuts" class="hidden">Mixed Nuts</label>
+                                <div class="flex items-center">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-mixed-nuts', -1)">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" id="traditional-mixed-nuts" name="mixedNuts" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-mixed-nuts', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-[#F8F5EE] rounded-lg shadow-sm col-span-1 sm:col-span-2 lg:col-span-3">
+                            <span class="text-gray-800 font-bold">传统套装 (一套四粒) / Traditional Set (4-pcs) (RM70)</span>
+                            <div class="custom-number-input w-24">
+                                <label for="traditional-set" class="hidden">Traditional Set</label>
+                                <div class="flex items-center">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-set', -1)">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" id="traditional-set" name="traditionalSet" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-set', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 传统月饼包装选择 / Traditional Mooncake Packaging -->
+                    <div class="mt-8 space-y-4">
+                        <h5 class="text-lg font-bold text-[#966C52]">传统月饼包装 / Packaging</h5>
+                        <p class="text-sm text-gray-600">请填写您需要的盒数。 / Please fill in the number of boxes you need.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                                <span class="text-gray-800">四合一包装 (4-in-1 Box)</span>
+                                <div class="custom-number-input w-24">
+                                    <label for="traditional-box-4in1" class="hidden">4-in-1 Box</label>
+                                    <div class="flex items-center">
+                                        <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-box-4in1', -1)">
+                                            <i class="fas fa-minus text-xs"></i>
+                                        </button>
+                                        <input type="number" id="traditional-box-4in1" name="traditionalBox4in1" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                        <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-box-4in1', 1)">
+                                            <i class="fas fa-plus text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                                <span class="text-gray-800">二合一包装 (2-in-1 Box)</span>
+                                <div class="custom-number-input w-24">
+                                    <label for="traditional-box-2in1" class="hidden">2-in-1 Box</label>
+                                    <div class="flex items-center">
+                                        <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-box-2in1', -1)">
+                                            <i class="fas fa-minus text-xs"></i>
+                                        </button>
+                                        <input type="number" id="traditional-box-2in1" name="traditionalBox2in1" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                        <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('traditional-box-2in1', 1)">
+                                            <i class="fas fa-plus text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p id="traditionalPackagingNote" class="mt-4 text-sm text-red-500 hidden"></p>
+                    </div>
+                </div>
+
+                <!-- 冰皮月饼 / Snow Skin Mooncake -->
+                <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
+                    <h4 class="text-xl font-bold text-[#966C52] mb-4">冰皮月饼 / Snow Skin Mooncake</h4>
+                    <p class="text-sm text-gray-600 mb-4">一套默认包含4种不同口味，也可自选或单点。可选4粒或2粒装盒。</p>
+                    <p class="text-sm text-gray-600 mb-4">A set defaults to 4 different flavors. You can also mix & match or order individually. Available in 4-piece or 2-piece boxes.</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- 口味选项 / Flavor Options -->
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                            <span class="text-gray-800">摩卡榛子 / Mocha Hazelnut (RM20)</span>
+                            <div class="custom-number-input w-24">
+                                <label for="snowskin-mocha" class="hidden">Mocha Hazelnut</label>
+                                <div class="flex items-center">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-mocha', -1)">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" id="snowskin-mocha" name="mocha" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-mocha', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                            <span class="text-gray-800">椰香芋泥 / Yam Coconut (RM20)</span>
+                            <div class="custom-number-input w-24">
+                                <label for="snowskin-yam" class="hidden">Yam Coconut</label>
+                                <div class="flex items-center">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-yam', -1)">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" id="snowskin-yam" name="yam" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-yam', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                            <span class="text-gray-800">开心果芝士 / Pistachio Cheese (RM20)</span>
+                            <div class="custom-number-input w-24">
+                                <label for="snowskin-pistachio" class="hidden">Pistachio Cheese</label>
+                                <div class="flex items-center">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-pistachio', -1)">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" id="snowskin-pistachio" name="pistachio" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-pistachio', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                            <span class="text-gray-800">莓果酸奶 / Berries Yogurt (RM20)</span>
+                            <div class="custom-number-input w-24">
+                                <label for="snowskin-berries" class="hidden">Berries Yogurt</label>
+                                <div class="flex items-center">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-berries', -1)">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" id="snowskin-berries" name="berries" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-berries', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-[#F8F5EE] rounded-lg shadow-sm col-span-1 sm:col-span-2 lg:col-span-3">
+                            <span class="text-gray-800 font-bold">冰皮套装 (一套四粒) / Snow Skin Set (4-pcs) (RM75)</span>
+                            <div class="custom-number-input w-24">
+                                <label for="snowskin-set" class="hidden">Snow Skin Set</label>
+                                <div class="flex items-center">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-set', -1)">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" id="snowskin-set" name="snowskinSet" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                    <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-set', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 冰皮月饼包装选择 / Snow Skin Mooncake Packaging -->
+                    <div class="mt-8 space-y-4">
+                        <h5 class="text-lg font-bold text-[#966C52]">冰皮月饼包装 / Packaging</h5>
+                        <p class="text-sm text-gray-600">请填写您需要的盒数。 / Please fill in the number of boxes you need.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                                <span class="text-gray-800">四合一包装 (4-in-1 Box)</span>
+                                <div class="custom-number-input w-24">
+                                    <label for="snowskin-box-4in1" class="hidden">4-in-1 Box</label>
+                                    <div class="flex items-center">
+                                        <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-box-4in1', -1)">
+                                            <i class="fas fa-minus text-xs"></i>
+                                        </button>
+                                        <input type="number" id="snowskin-box-4in1" name="snowskinBox4in1" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                        <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-box-4in1', 1)">
+                                            <i class="fas fa-plus text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                                <span class="text-gray-800">二合一包装 (2-in-1 Box)</span>
+                                <div class="custom-number-input w-24">
+                                    <label for="snowskin-box-2in1" class="hidden">2-in-1 Box</label>
+                                    <div class="flex items-center">
+                                        <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-box-2in1', -1)">
+                                            <i class="fas fa-minus text-xs"></i>
+                                        </button>
+                                        <input type="number" id="snowskin-box-2in1" name="snowskinBox2in1" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                        <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('snowskin-box-2in1', 1)">
+                                            <i class="fas fa-plus text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p id="snowskinPackagingNote" class="mt-4 text-sm text-red-500 hidden"></p>
+                    </div>
+                </div>
+
+                <!-- 菜燕月饼 / Jelly Mooncake -->
+                <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
+                    <h4 class="text-xl font-bold text-[#966C52] mb-4">菜燕月饼 / Jelly Mooncake (RM38/set)</h4>
+                    <p class="text-sm text-gray-600 mb-4">一套包含四种口味：芒果西米露、斑斓玉米、香芋红豆、椰糖马蹄。</p>
+                    <p class="text-sm text-gray-600 mb-4">Set of 4 flavors: Mango Sago, Pandan Sweetcorn, Yam Red Bean, Gula Melaka Water Chestnut.</p>
+                    <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                        <span class="text-gray-800 font-bold">菜燕月饼套装 / Jelly Mooncake Set (RM38)</span>
+                        <div class="custom-number-input w-24">
+                            <label for="jelly-set" class="hidden">Jelly Mooncake Set</label>
+                            <div class="flex items-center">
+                                <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('jelly-set', -1)">
+                                    <i class="fas fa-minus text-xs"></i>
+                                </button>
+                                <input type="number" id="jelly-set" name="jellySet" class="p-0.5 w-10 text-center text-gray-700 border-none bg-transparent focus:ring-0 focus:outline-none input-number" placeholder="0" min="0" oninput="updateSummary()">
+                                <button type="button" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center" onclick="changeQuantity('jelly-set', 1)">
+                                    <i class="fas fa-plus text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 取货和付款方式 / Pickup & Payment -->
+            <div class="space-y-8">
+                <h3 class="text-2xl font-semibold text-[#966C52] section-title">3. 取货与付款 / Pickup & Payment</h3>
+                
+                <!-- 取货日 / Pickup Date -->
+                <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
+                    <h4 class="text-xl font-bold text-[#966C52] mb-4">取货日 / Pickup Date</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="pickupBatch" value="Batch 1" required class="form-radio text-[#D4B996] focus:ring-[#D4B996]">
+                            <span class="text-gray-800">Batch 1 (13 Sept 2025)</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="pickupBatch" value="Batch 2" class="form-radio text-[#D4B996] focus:ring-[#D4B996]">
+                            <span class="text-gray-800">Batch 2 (20 Sept 2025)</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="pickupBatch" value="Batch 3" class="form-radio text-[#D4B996] focus:ring-[#D4B996]">
+                            <span class="text-gray-800">Batch 3 (27 Sept 2025)</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="pickupBatch" value="Batch 4" class="form-radio text-[#D4B996] focus:ring-[#D4B996]">
+                            <span class="text-gray-800">Batch 4 (4 Oct 2025)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 取货方式 / Pickup Method -->
+                <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
+                    <h4 class="text-xl font-bold text-[#966C52] mb-4">取货方式 / Pickup Method</h4>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="pickupMethod" value="Self-Pickup" required class="form-radio text-[#D4B996] focus:ring-[#D4B996]" onchange="toggleDeliveryFields()">
+                            <span class="text-gray-800">自取 / Self-Pickup</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="pickupMethod" value="Delivery" class="form-radio text-[#D4B996] focus:ring-[#D4B996]" onchange="toggleDeliveryFields()">
+                            <span class="text-gray-800">配送 / Delivery</span>
+                        </label>
+                    </div>
+                    <!-- 配送资料 / Delivery Details -->
+                    <div id="deliveryFields" class="mt-6 space-y-4 hidden">
+                        <p class="text-sm text-gray-600">配送费将视地区来决定，请联系我们确认。 / Delivery fee depends on the area, please contact us for confirmation.</p>
+                        <div>
+                            <label for="recipientName" class="block text-sm font-medium text-gray-700">收货人姓名 / Recipient Name</label>
+                            <input type="text" id="recipientName" name="recipientName" placeholder="请输入收货人姓名 / Enter recipient name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#D4B996] focus:ring focus:ring-[#D4B996] focus:ring-opacity-50 p-2">
+                        </div>
+                        <div>
+                            <label for="recipientNumber" class="block text-sm font-medium text-gray-700">收货人联系号码 / Recipient Contact Number</label>
+                            <input type="tel" id="recipientNumber" name="recipientNumber" placeholder="请输入收货人联系号码 / Enter recipient number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#D4B996] focus:ring focus:ring-[#D4B996] focus:ring-opacity-50 p-2">
+                        </div>
+                        <div>
+                            <label for="deliveryAddress" class="block text-sm font-medium text-gray-700">地址 / Address</label>
+                            <textarea id="deliveryAddress" name="deliveryAddress" rows="3" placeholder="请输入完整地址 / Enter full address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#D4B996] focus:ring focus:ring-[#D4B996] focus:ring-opacity-50 p-2"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 付款方式 / Payment Method -->
+                <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
+                    <h4 class="text-xl font-bold text-[#966C52] mb-4">付款方式 / Payment Method</h4>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="paymentMethod" value="Cash" required class="form-radio text-[#D4B996] focus:ring-[#D4B996]">
+                            <span class="text-gray-800">现金 / Cash</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="paymentMethod" value="Bank Transfer" class="form-radio text-[#D4B996] focus:ring-[#D4B996]">
+                            <span class="text-gray-800">银行转账 / Bank Transfer</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 备注 / Remarks -->
+            <div class="space-y-4">
+                <h3 class="text-2xl font-semibold text-[#966C52] section-title">4. 备注/留言 / Remarks/Notes</h3>
+                <textarea id="remarks" name="remarks" rows="4" placeholder="例如：特别要求或送礼留言 / E.g., special requests or gift message" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#D4B996] focus:ring focus:ring-[#D4B996] focus:ring-opacity-50 p-2"></textarea>
+            </div>
+
+            <!-- 总览 / Order Summary -->
+            <div class="space-y-4">
+                <h3 class="text-2xl font-semibold text-[#966C52] section-title">5. 总览 / Order Summary</h3>
+                <div id="orderSummary" class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
+                    <div class="text-gray-800">
+                        <h4 class="text-lg font-bold mb-2">订单详情 / Order Details:</h4>
+                        <ul id="summaryList" class="space-y-1"></ul>
+                        <div class="mt-4 pt-4 border-t border-gray-300 font-bold flex justify-between">
+                            <span>总价 / Total Price:</span>
+                            <span id="totalPrice">RM 0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 温馨提示 / Friendly Reminder -->
+            <div class="text-center text-sm text-gray-600 mt-6 p-4 border border-dashed border-[#D4B996] rounded-xl">
+                <p><strong>温馨提示:</strong> 下单成功后，请联系我们以做个确认记录，同时我们也会提供自取地点、付款方式，和配送费用与时间，谢谢您的支持！</p>
+                <p class="mt-2"><strong>Friendly reminder:</strong> After placing your order, please contact us for a confirmation. We will also provide the self-pickup location, payment details, and delivery fees & times. Thank you for your support!</p>
+            </div>
+
+            <!-- 提交按钮 / Submit Button -->
+            <div class="text-center">
+                <button type="submit" id="submitBtn" class="bg-[#966C52] text-white font-bold py-3 px-8 rounded-full submit-button shadow-lg">
+                    提交 / Submit
+                </button>
+            </div>
+        </form>
+
+        <!-- 弹窗 / Popup Modal -->
+        <div id="popupModal" class="popup-modal hidden">
+            <div class="popup-content text-center space-y-4">
+                <h4 class="text-2xl font-bold text-[#966C52]">订单已提交成功！</h4>
+                <p class="text-lg text-gray-800">Your order has been submitted successfully!</p>
+                <p class="text-lg font-bold text-[#D4B996]">订单号 / Order Number: <br><span id="orderNumber" class="text-xl text-[#966C52]"></span></p>
+                <div id="popupSummary" class="text-left text-sm mt-4 p-4 border rounded-lg bg-[#F3EFE0]"></div>
+                <button onclick="closePopup()" class="mt-6 bg-[#D4B996] text-white py-2 px-6 rounded-full font-bold shadow-md">确定 / OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 模拟 Google App Script 的 URL，需要您自行替换为部署后的链接
+        // Simulated Google App Script URL. You need to replace this with your deployed link.
+        const GOOGLE_APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxELWJKFegJqxxvGhJn4mnUbFW2FKO9g3TBYL6aKfXZVAkfsdTsmhuBkziR0O-dEORuig/exec";
+
+        // 月饼价格配置 / Mooncake price configuration
+        const PRICES = {
+            'redBean': 12, 'whiteLotus': 20, 'pandan': 20, 'mixedNuts': 22,
+            'traditionalSet': 70,
+            'mocha': 20, 'yam': 20, 'pistachio': 20, 'berries': 20,
+            'snowskinSet': 75,
+            'jellySet': 38,
+        };
+
+        const flavorNames = {
+            'redBean': '豆沙 / Red Bean',
+            'whiteLotus': '白莲单黄 / White Lotus Single Yolk',
+            'pandan': '翡翠单黄 / Pandan Lotus Single Yolk',
+            'mixedNuts': '经典五仁 / Mixed Nuts',
+            'traditionalSet': '传统套装 / Traditional Set',
+            'mocha': '摩卡榛子 / Mocha Hazelnut',
+            'yam': '椰香芋泥 / Yam Coconut',
+            'pistachio': '开心果芝士 / Pistachio Cheese',
+            'berries': '莓果酸奶 / Berries Yogurt',
+            'snowskinSet': '冰皮套装 / Snow Skin Set',
+            'jellySet': '菜燕月饼套装 / Jelly Mooncake Set'
+        };
+
+        // 辅助函数：根据ID修改数量 / Helper function: change quantity by ID
+        function changeQuantity(id, delta) {
+            const input = document.getElementById(id);
+            let value = parseInt(input.value) || 0;
+            value += delta;
+            if (value < 0) value = 0;
+            input.value = value;
+            updateSummary();
+        }
+
+        // 切换配送信息输入框的显示状态 / Toggle visibility of delivery fields
+        function toggleDeliveryFields() {
+            const deliveryFields = document.getElementById('deliveryFields');
+            const pickupMethod = document.querySelector('input[name="pickupMethod"]:checked');
+            deliveryFields.classList.toggle('hidden', pickupMethod && pickupMethod.value !== 'Delivery');
+        }
+
+        // 更新订单总览和价格 / Update order summary and price
+        function updateSummary() {
+            let totalPrice = 0;
+            const summaryList = document.getElementById('summaryList');
+            summaryList.innerHTML = '';
+            
+            const form = document.getElementById('orderForm');
+            const data = new FormData(form);
+            
+            let totalTraditionalItems = 0;
+            let totalSnowSkinItems = 0;
+
+            // 传统月饼计算 / Traditional mooncake calculation
+            const traditionalFlavors = ['redBean', 'whiteLotus', 'pandan', 'mixedNuts'];
+            for (const flavor of traditionalFlavors) {
+                const count = parseInt(data.get(flavor) || '0');
+                if (count > 0) {
+                    totalPrice += count * PRICES[flavor];
+                    summaryList.innerHTML += `<li class="text-sm">传统月饼 - ${flavorNames[flavor]} x ${count}</li>`;
+                }
+                totalTraditionalItems += count;
+            }
+
+            const traditionalSetCount = parseInt(data.get('traditionalSet') || '0');
+            if (traditionalSetCount > 0) {
+                totalPrice += traditionalSetCount * PRICES.traditionalSet;
+                summaryList.innerHTML += `<li class="text-sm font-bold">传统套装 x ${traditionalSetCount}</li>`;
+                totalTraditionalItems += traditionalSetCount * 4; // 每个套装包含4粒 / Each set has 4 mooncakes
+            }
+
+            // 传统月饼包装检查 / Traditional mooncake packaging check
+            const traditionalBox4in1Count = parseInt(data.get('traditionalBox4in1') || '0');
+            const traditionalBox2in1Count = parseInt(data.get('traditionalBox2in1') || '0');
+            const packagedTraditional = (traditionalBox4in1Count * 4) + (traditionalBox2in1Count * 2);
+            
+            const traditionalPackagingNote = document.getElementById('traditionalPackagingNote');
+            traditionalPackagingNote.classList.add('hidden');
+            if (totalTraditionalItems > 0) {
+                if (packagedTraditional > totalTraditionalItems) {
+                    traditionalPackagingNote.textContent = `警告：您购买的传统月饼 (${totalTraditionalItems} 粒) 少于您选择的包装盒容量 (${packagedTraditional} 粒)。请调整数量。`;
+                    traditionalPackagingNote.classList.remove('hidden');
+                } else if (packagedTraditional < totalTraditionalItems) {
+                    const unboxed = totalTraditionalItems - packagedTraditional;
+                    traditionalPackagingNote.textContent = `温馨提示：您有 ${unboxed} 粒传统月饼将不含包装盒。`;
+                    traditionalPackagingNote.classList.remove('hidden');
+                }
+            }
+
+
+            // 冰皮月饼计算 / Snow skin mooncake calculation
+            const snowskinFlavors = ['mocha', 'yam', 'pistachio', 'berries'];
+            for (const flavor of snowskinFlavors) {
+                const count = parseInt(data.get(flavor) || '0');
+                if (count > 0) {
+                    totalPrice += count * PRICES[flavor];
+                    summaryList.innerHTML += `<li class="text-sm">冰皮月饼 - ${flavorNames[flavor]} x ${count}</li>`;
+                }
+                totalSnowSkinItems += count;
+            }
+
+            const snowskinSetCount = parseInt(data.get('snowskinSet') || '0');
+            if (snowskinSetCount > 0) {
+                totalPrice += snowskinSetCount * PRICES.snowskinSet;
+                summaryList.innerHTML += `<li class="text-sm font-bold">冰皮套装 x ${snowskinSetCount}</li>`;
+                totalSnowSkinItems += snowskinSetCount * 4; // 每个套装包含4粒 / Each set has 4 mooncakes
+            }
+
+            // 冰皮月饼包装检查 / Snow skin mooncake packaging check
+            const snowskinBox4in1Count = parseInt(data.get('snowskinBox4in1') || '0');
+            const snowskinBox2in1Count = parseInt(data.get('snowskinBox2in1') || '0');
+            const packagedSnowSkin = (snowskinBox4in1Count * 4) + (snowskinBox2in1Count * 2);
+
+            const snowskinPackagingNote = document.getElementById('snowskinPackagingNote');
+            snowskinPackagingNote.classList.add('hidden');
+            if (totalSnowSkinItems > 0) {
+                if (packagedSnowSkin > totalSnowSkinItems) {
+                    snowskinPackagingNote.textContent = `警告：您购买的冰皮月饼 (${totalSnowSkinItems} 粒) 少于您选择的包装盒容量 (${packagedSnowSkin} 粒)。请调整数量。`;
+                    snowskinPackagingNote.classList.remove('hidden');
+                } else if (packagedSnowSkin < totalSnowSkinItems) {
+                    const unboxed = totalSnowSkinItems - packagedSnowSkin;
+                    snowskinPackagingNote.textContent = `温馨提示：您有 ${unboxed} 粒冰皮月饼将不含包装盒。`;
+                    snowskinPackagingNote.classList.remove('hidden');
+                }
+            }
+
+            // 菜燕月饼计算 / Jelly mooncake calculation
+            const jellySetCount = parseInt(data.get('jellySet') || '0');
+            if (jellySetCount > 0) {
+                totalPrice += jellySetCount * PRICES.jellySet;
+                summaryList.innerHTML += `<li class="text-sm">菜燕月饼套装 x ${jellySetCount}</li>`;
+            }
+
+            // 总价显示 / Total price display
+            document.getElementById('totalPrice').textContent = `RM ${totalPrice.toFixed(2)}`;
+        }
+
+        // 生成简短订单号 / Generate a short order number
+        function generateOrderNumber(batch) {
+            const now = new Date();
+            const year = String(now.getFullYear()).slice(-2);
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+            const batchPrefix = batch ? batch.replace('Batch ', 'B') : 'B0';
+            return `${batchPrefix}-${year}${month}${day}-${random}`;
+        }
+
+        // 显示弹窗 / Show popup modal
+        function showPopup(orderNumber, formData) {
+            document.getElementById('orderNumber').textContent = orderNumber;
+            const popupSummary = document.getElementById('popupSummary');
+            let summaryContent = `
+                <h5 class="font-bold mb-2">订单总览 / Order Summary:</h5>
+                <p><strong>姓名:</strong> ${formData.customerName}</p>
+                <p><strong>联系号码:</strong> ${formData.contactNumber}</p>
+                <p><strong>取货批次:</strong> ${formData.pickupBatch}</p>
+                <p><strong>取货方式:</strong> ${formData.pickupMethod}</p>
+            `;
+            if (formData.pickupMethod === 'Delivery') {
+                summaryContent += `
+                    <p><strong>收货人:</strong> ${formData.recipientName}</p>
+                    <p><strong>地址:</strong> ${formData.deliveryAddress}</p>
+                `;
+            }
+            summaryContent += `
+                <p class="mt-2"><strong>月饼详情:</strong></p>
+                ${Object.entries(formData.mooncakeItems).map(([item, qty]) => {
+                    if (qty > 0) return `<p class="ml-4">${flavorNames[item]} x ${qty}</p>`;
+                    return '';
+                }).join('')}
+                <p><strong>传统月饼包装:</strong> ${formData.traditionalBox4in1} 个 4合1盒, ${formData.traditionalBox2in1} 个 2合1盒</p>
+                <p><strong>冰皮月饼包装:</strong> ${formData.snowskinBox4in1} 个 4合1盒, ${formData.snowskinBox2in1} 个 2合1盒</p>
+                <p class="mt-2 font-bold"><strong>总价:</strong> RM ${formData.totalPrice.toFixed(2)}</p>
+            `;
+            popupSummary.innerHTML = summaryContent;
+            document.getElementById('popupModal').classList.remove('hidden');
+        }
+
+        // 关闭弹窗 / Close popup modal
+        function closePopup() {
+            document.getElementById('popupModal').classList.add('hidden');
+            document.getElementById('orderForm').reset();
+            updateSummary(); // 重置后更新总览
+        }
+
+        // 表单提交处理 / Form submission handler
+        document.getElementById('orderForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.textContent = '提交中... / Submitting...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = value; });
+
+            // 将套装数量分解到各个口味 / Break down set quantities into individual flavors
+            const traditionalSetCount = parseInt(data.traditionalSet || '0');
+            if (traditionalSetCount > 0) {
+                data.redBean = (parseInt(data.redBean || '0') + traditionalSetCount * 1).toString();
+                data.whiteLotus = (parseInt(data.whiteLotus || '0') + traditionalSetCount * 1).toString();
+                data.pandan = (parseInt(data.pandan || '0') + traditionalSetCount * 1).toString();
+                data.mixedNuts = (parseInt(data.mixedNuts || '0') + traditionalSetCount * 1).toString();
+            }
+
+            const snowskinSetCount = parseInt(data.snowskinSet || '0');
+            if (snowskinSetCount > 0) {
+                data.mocha = (parseInt(data.mocha || '0') + snowskinSetCount * 1).toString();
+                data.yam = (parseInt(data.yam || '0') + snowskinSetCount * 1).toString();
+                data.pistachio = (parseInt(data.pistachio || '0') + snowskinSetCount * 1).toString();
+                data.berries = (parseInt(data.berries || '0') + snowskinSetCount * 1).toString();
+            }
+            
+            // 计算总价和详细月饼项目 / Calculate total price and detailed mooncake items
+            let totalPrice = 0;
+            const mooncakeItems = {};
+            for (const key in data) {
+                if (PRICES[key] && parseInt(data[key]) > 0) {
+                    totalPrice += PRICES[key] * parseInt(data[key]);
+                    mooncakeItems[key] = parseInt(data[key]);
+                }
+            }
+
+            const pickupBatch = data.pickupBatch;
+            const orderNumber = generateOrderNumber(pickupBatch);
+
+            // 最终提交数据 / Final data to be submitted
+            const finalData = {
+                orderNumber: orderNumber,
+                timestamp: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' }), // GMT+8
+                customerName: data.customerName,
+                contactNumber: data.contactNumber,
+                remarks: data.remarks || 'N/A',
+                pickupBatch: data.pickupBatch,
+                pickupMethod: data.pickupMethod,
+                recipientName: data.recipientName || 'N/A',
+                recipientNumber: data.recipientNumber || 'N/A',
+                deliveryAddress: data.deliveryAddress || 'N/A',
+                paymentMethod: data.paymentMethod,
+                totalPrice: totalPrice,
+                mooncakeItems: mooncakeItems,
+                traditionalBox4in1: parseInt(data.traditionalBox4in1 || '0'),
+                traditionalBox2in1: parseInt(data.traditionalBox2in1 || '0'),
+                snowskinBox4in1: parseInt(data.snowskinBox4in1 || '0'),
+                snowskinBox2in1: parseInt(data.snowskinBox2in1 || '0')
+            };
+
+            // 模拟发送数据到 Google App Script
+            // Simulate sending data to Google App Script
+            console.log('Final data to be sent:', finalData);
+            
+            // --- Google App Script (GS) 的 do-post 函数说明 ---
+            // 您需要创建和部署一个 Google App Script 项目，并在其中编写 doPost(e) 函数来处理这个提交。
+            // Below are instructions for the Google App Script's doPost(e) function.
+            // You need to create and deploy a Google App Script project and write a doPost(e) function to handle this submission.
+            /*
+            
+            // GS 代码示例 (需要创建 5 个 sheet: 总单, Batch 1, Batch 2, Batch 3, Batch 4)
+            // GS Code Example (requires 5 sheets: Total, Batch 1, Batch 2, Batch 3, Batch 4)
+            
+            function doPost(e) {
+                const lock = LockService.getScriptLock();
+                lock.waitLock(30000); // Wait 30 seconds for a lock.
+                
+                try {
+                    const ss = SpreadsheetApp.getActiveSpreadsheet();
+                    const data = JSON.parse(e.postData.contents);
+                    
+                    // 获取总单页 / Get the main sheet
+                    const totalSheet = ss.getSheetByName('总单') || ss.insertSheet('总单');
+                    if (totalSheet.getLastRow() === 0) {
+                        totalSheet.appendRow(['订单号', '时间 (GMT+8)', '顾客姓名', '联系号码', '备注', '取货批次', '取货方式', '付款方式', '总价', '月饼详情', '传统4粒盒', '传统2粒盒', '冰皮4粒盒', '冰皮2粒盒']);
+                    }
+                    
+                    // 将订单详情写入总单页 / Write order details to the main sheet
+                    const orderRow = [
+                        data.orderNumber,
+                        data.timestamp,
+                        data.customerName,
+                        data.contactNumber,
+                        data.remarks,
+                        data.pickupBatch,
+                        data.pickupMethod,
+                        data.paymentMethod,
+                        data.totalPrice,
+                        JSON.stringify(data.mooncakeItems), // 存储月饼详情 / Store mooncake details
+                        data.traditionalBox4in1,
+                        data.traditionalBox2in1,
+                        data.snowskinBox4in1,
+                        data.snowskinBox2in1
+                    ];
+                    totalSheet.appendRow(orderRow);
+                    
+                    // 将订单按批次分类到不同的sheet并统计口味数量
+                    // Categorize orders by batch and tally mooncake flavors in separate sheets
+                    const batchSheetName = data.pickupBatch;
+                    const batchSheet = ss.getSheetByName(batchSheetName) || ss.insertSheet(batchSheetName);
+                    
+                    // 确保批次表的表头存在 / Ensure the batch sheet headers exist
+                    if (batchSheet.getLastRow() === 0) {
+                        batchSheet.appendRow(['口味', '数量']);
+                    }
+                    
+                    // 统计并更新批次表中的口味数量 / Tally and update flavor counts in the batch sheet
+                    const counts = {};
+                    for (const flavor in data.mooncakeItems) {
+                         // 将套装的月饼数量也加进去 / Add mooncakes from sets
+                         if (flavor === 'traditionalSet') {
+                             counts['redBean'] = (counts['redBean'] || 0) + data.mooncakeItems[flavor] * 1;
+                             counts['whiteLotus'] = (counts['whiteLotus'] || 0) + data.mooncakeItems[flavor] * 1;
+                             counts['pandan'] = (counts['pandan'] || 0) + data.mooncakeItems[flavor] * 1;
+                             counts['mixedNuts'] = (counts['mixedNuts'] || 0) + data.mooncakeItems[flavor] * 1;
+                         } else if (flavor === 'snowskinSet') {
+                             counts['mocha'] = (counts['mocha'] || 0) + data.mooncakeItems[flavor] * 1;
+                             counts['yam'] = (counts['yam'] || 0) + data.mooncakeItems[flavor] * 1;
+                             counts['pistachio'] = (counts['pistachio'] || 0) + data.mooncakeItems[flavor] * 1;
+                             counts['berries'] = (counts['berries'] || 0) + data.mooncakeItems[flavor] * 1;
+                         } else if (flavor === 'jellySet') {
+                              counts['jellySet'] = (counts['jellySet'] || 0) + data.mooncakeItems[flavor];
+                         } else {
+                             counts[flavor] = (counts[flavor] || 0) + data.mooncakeItems[flavor];
+                         }
+                    }
+                    
+                    // 更新或添加行 / Update or add rows
+                    for (const flavor in counts) {
+                        let row = batchSheet.getRange('A:A').createTextFinder(flavor).matchEntireCell(true).findNext();
+                        if (row) {
+                            let currentCount = row.offset(0, 1).getValue();
+                            row.offset(0, 1).setValue(currentCount + counts[flavor]);
+                        } else {
+                            batchSheet.appendRow([flavor, counts[flavor]]);
+                        }
+                    }
+                    
+                    // 返回成功响应 / Return success response
+                    return ContentService.createTextOutput(JSON.stringify({ status: 'success', orderNumber: data.orderNumber }));
+
+                } catch (error) {
+                    return ContentService.createTextOutput(JSON.stringify({ status: 'error', message: error.message })).setMimeType(ContentService.MimeType.JSON);
+                } finally {
+                    lock.releaseLock();
+                }
+            }
+            */
+
+            // 模拟异步请求 / Simulate asynchronous request
+            setTimeout(() => {
+                const response = { status: 'success' };
+                if (response.status === 'success') {
+                    showPopup(orderNumber, {
+                        customerName: data.customerName,
+                        contactNumber: data.contactNumber,
+                        pickupBatch: data.pickupBatch,
+                        pickupMethod: data.pickupMethod,
+                        recipientName: data.recipientName || 'N/A',
+                        recipientNumber: data.recipientNumber || 'N/A',
+                        deliveryAddress: data.deliveryAddress || 'N/A',
+                        mooncakeItems: mooncakeItems,
+                        totalPrice: totalPrice,
+                        traditionalBox4in1: parseInt(data.traditionalBox4in1 || '0'),
+                        traditionalBox2in1: parseInt(data.traditionalBox2in1 || '0'),
+                        snowskinBox4in1: parseInt(data.snowskinBox4in1 || '0'),
+                        snowskinBox2in1: parseInt(data.snowskinBox2in1 || '0')
+                    });
+                } else {
+                    alert('提交失败，请重试。');
+                }
+                submitBtn.textContent = '提交 / Submit';
+                submitBtn.disabled = false;
+            }, 1500); // 模拟网络延迟 / Simulate network latency
+        });
+
+        // 初始化更新总览 / Initialize summary on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSummary();
+        });
+    </script>
+</body>
+</html>
