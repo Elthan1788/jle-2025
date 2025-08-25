@@ -111,8 +111,8 @@
                 <!-- Traditional Mooncake -->
                 <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
                     <h4 class="text-xl font-bold text-[#966C52] mb-4">传统月饼 / Traditional Mooncake</h4>
-                    <p class="text-sm text-gray-600 mb-4">一套默认包含4种不同口味，也可自选或单点。可选4粒或2粒装盒。</p>
-                    <p class="text-sm text-gray-600 mb-4">A set defaults to 4 different flavors. You can also mix & match or order individually. Available in 4-piece or 2-piece boxes.</p>
+                    <p class="text-sm text-gray-600 mb-4">请选择您的传统月饼口味和数量。可选4粒或2粒装盒。</p>
+                    <p class="text-sm text-gray-600 mb-4">Please choose your traditional mooncake flavor and quantity. Available in 4-piece or 2-piece boxes.</p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Flavor Options -->
@@ -221,8 +221,8 @@
                 <!-- Snow Skin Mooncake -->
                 <div class="p-6 bg-[#F8F5EE] border border-[#D4B996] rounded-xl">
                     <h4 class="text-xl font-bold text-[#966C52] mb-4">冰皮月饼 / Snow Skin Mooncake</h4>
-                    <p class="text-sm text-gray-600 mb-4">一套默认包含4种不同口味，也可自选或单点。可选4粒或2粒装盒。</p>
-                    <p class="text-sm text-gray-600 mb-4">A set defaults to 4 different flavors. You can also mix & match or order individually. Available in 4-piece or 2-piece boxes.</p>
+                    <p class="text-sm text-gray-600 mb-4">请选择您的冰皮月饼口味和数量。可选4粒或2粒装盒。</p>
+                    <p class="text-sm text-gray-600 mb-4">Please choose your snow skin mooncake flavor and quantity. Available in 4-piece or 2-piece boxes.</p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Flavor Options -->
@@ -490,12 +490,10 @@
             'whiteLotus': '白莲单黄 / White Lotus Single Yolk',
             'pandan': '翡翠单黄 / Pandan Lotus Single Yolk',
             'mixedNuts': '经典五仁 / Mixed Nuts',
-            'traditionalSet': '传统套装 / Traditional Set',
             'mocha': '摩卡榛子 / Mocha Hazelnut',
             'yam': '椰香芋泥 / Yam Coconut',
             'pistachio': '开心果芝士 / Pistachio Cheese',
             'berries': '莓果酸奶 / Berries Yogurt',
-            'snowskinSet': '冰皮套装 / Snow Skin Set',
             'jellySet': '菜燕月饼套装 / Jelly Mooncake Set'
         };
 
@@ -552,17 +550,21 @@
             const packagedTraditional = (traditionalBox4in1Count * 4) + (traditionalBox2in1Count * 2);
             
             const traditionalPackagingNote = document.getElementById('traditionalPackagingNote');
-            traditionalPackagingNote.classList.add('hidden');
-            if (totalTraditionalItems > 0) {
-                if (packagedTraditional > totalTraditionalItems) {
-                    traditionalPackagingNote.textContent = `警告：您购买的传统月饼 (${totalTraditionalItems} 粒) 少于您选择的包装盒容量 (${packagedTraditional} 粒)。请调整数量。`;
-                    traditionalPackagingNote.classList.remove('hidden');
-                } else if (packagedTraditional < totalTraditionalItems) {
-                    const unboxed = totalTraditionalItems - packagedTraditional;
-                    traditionalPackagingNote.textContent = `温馨提示：您有 ${unboxed} 粒传统月饼将不含包装盒。`;
-                    traditionalPackagingNote.classList.remove('hidden');
-                }
-            }
+traditionalPackagingNote.classList.add('hidden');
+
+if (totalTraditionalItems > 0) {
+    if (packagedTraditional > totalTraditionalItems) {
+        traditionalPackagingNote.innerHTML = `注意：您购买的传统月饼 (${totalTraditionalItems} 粒) 少于您选择的包装盒容量 (${packagedTraditional} 粒)。请调整数量。<br>
+        Note: The number of traditional mooncake(s) you purchased (${totalTraditionalItems} pcs) is less than the capacity of the packaging box you selected (${packagedTraditional} pcs). Please adjust the quantity.`;
+        traditionalPackagingNote.classList.remove('hidden');
+    } else if (packagedTraditional < totalTraditionalItems) {
+        const unboxed = totalTraditionalItems - packagedTraditional;
+        traditionalPackagingNote.innerHTML = `温馨提示：您有 ${unboxed} 粒传统月饼将不含包装盒。<br>
+        Reminder: You have ${unboxed} traditional mooncake(s) that will not be included in a packaging box.`;
+        traditionalPackagingNote.classList.remove('hidden');
+    }
+}
+
 
 
             // Snow skin mooncake calculation
@@ -592,11 +594,13 @@
             snowskinPackagingNote.classList.add('hidden');
             if (totalSnowSkinItems > 0) {
                 if (packagedSnowSkin > totalSnowSkinItems) {
-                    snowskinPackagingNote.textContent = `警告：您购买的冰皮月饼 (${totalSnowSkinItems} 粒) 少于您选择的包装盒容量 (${packagedSnowSkin} 粒)。请调整数量。`;
+                    snowskinPackagingNote.innerHTML = `注意：您购买的冰皮月饼 (${totalSnowSkinItems} 粒) 少于您选择的包装盒容量 (${packagedSnowSkin} 粒)。请调整数量。<br>
+        Note: The number of snow skin mooncake(s) you purchased (${totalSnowSkinItems} pcs) is less than the capacity of the packaging box you selected (${packagedSnowSkin} pcs). Please adjust the quantity.`;
                     snowskinPackagingNote.classList.remove('hidden');
                 } else if (packagedSnowSkin < totalSnowSkinItems) {
                     const unboxed = totalSnowSkinItems - packagedSnowSkin;
-                    snowskinPackagingNote.textContent = `温馨提示：您有 ${unboxed} 粒冰皮月饼将不含包装盒。`;
+                    snowskinPackagingNote.innerHTML = `温馨提示：您有 ${unboxed} 粒冰皮月饼将不含包装盒。<br>
+        Reminder: You have ${unboxed} snow skin mooncake(s) that will not be included in a packaging box.`;
                     snowskinPackagingNote.classList.remove('hidden');
                 }
             }
